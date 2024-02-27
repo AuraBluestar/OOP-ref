@@ -1,49 +1,31 @@
-#include "Header.h"
+#pragma once
 
-int Sum(int a, int b) { return a + b; }
-int Dif(int a, int b) { return a - b; }
-int Mul(int a, int b) { return a * b; }
-int Div(int a, int b) { return a / b; }
-int main(int argc, char* argv[])
-{
-	char input[38] = "---H***E+++L+++L///O---P+++O/+-**O---";
-	func Operatori[4] = { Sum, Dif, Mul, Div };
-	int S=0;
-	Content x{0,0};
-	int idx;
-	for ( int i = 0; i < strlen(input); i++)
-	{
-		switch (input[i] - 42)
-		{
-		case INMULTIRE:
-			idx = 2;
-			x.p1 = 3;
-			x.p2 = 3;
-			break;
-		case SUMA:
-			idx = 0;
-			x.p1 = 7;
-			x.p2 = 5;
-			break;
-		case DIFERENTA:
-			idx = 1;
-			x.p1 = 10;
-			x.p2 = 1;
-			break;
-		case IMPARTIRE:
-			idx = 3;
-			x.p1 = 8;
-			x.p2 = 4;
-			break;
-		default:  
-			break;
-		}
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <string.h>
 
-		S = S + Operatori[idx](x.p1, x.p2);
-	}
+#define MAX 1000
 
-	//S=337
-	printf("S = %d\n", S);
+enum VALORI {
+	INMULTIRE = 0,
+	SUMA=1,
+	REZERVAT1,
+	DIFERENTA=3,
+	REZERVAT2,
+	IMPARTIRE=5
+};
 
-	return 0;
-}
+typedef int (*func)(int, int);
+
+struct Content {
+	int p1;
+	int p2;
+};
+
+int Sum(int a, int b);
+int Dif(int a, int b);
+int Mul(int a, int b);
+int Div(int a, int b);
+
+
