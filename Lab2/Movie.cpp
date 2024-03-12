@@ -8,7 +8,7 @@ Movie::Movie()
 	IMDB = 0;
 	lenght = 0;
 	release_year = 0;
-	present_year = 2023;
+	present_year = 2024;
 	for (int i = 0; i < 256; i++)
 		name[i] =' ';
 }
