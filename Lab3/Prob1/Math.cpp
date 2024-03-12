@@ -51,7 +51,7 @@ int Math::Add(int count, ...)
 {
     double s = 0;
     va_list args;
-    va_start(args, count);;
+    va_start(args, count);
     for (int i = 0; i < count; i++) 
     {
             double x = va_arg(args, double);
