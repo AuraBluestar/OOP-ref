@@ -5,10 +5,13 @@ using namespace std;
 
 Canvas::Canvas(int lines, int columns)
 {
-	this->height = lines;
-	this->length = columns;
-	this->clear();
-
+	if(lines<=1000 && columns<=1000)
+	{
+		this->height = lines;
+		this->length = columns;
+		this->clear();
+	}
+	else cout<<"Se depaseste capacitatea matricei!"<<endl;
 }
 
 void Canvas::set_pixel(int x, int y, char value)
