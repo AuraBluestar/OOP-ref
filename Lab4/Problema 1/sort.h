@@ -6,7 +6,7 @@
 class Sort {
 private:
     int n;
-    int vect[200];
+    int vect[200]{};
 
 public:
     Sort(int nr_elemente, int min, int max);
