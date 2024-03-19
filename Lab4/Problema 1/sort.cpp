@@ -7,7 +7,6 @@ using namespace std;
 
 Sort::Sort(int nr_elemente, int min, int max) {
     n = nr_elemente;
-    vect = new int[n];
     if (nr_elemente <= 200)
     {
         srand(time(0));
@@ -20,7 +19,6 @@ Sort::Sort(int nr_elemente, int min, int max) {
 
 Sort::Sort(int nr_elemente, int v[200]) {
     n = nr_elemente;
-    vect = new int[n];
     if (nr_elemente <= 200)
     {
         for (int i = 0; i < n; i++)
@@ -32,7 +30,6 @@ Sort::Sort(int nr_elemente, int v[200]) {
 
 Sort::Sort(int nr_elemente, ...) {
     n = nr_elemente;
-    vect = new int[n];
     if (nr_elemente <= 200)
     {
         va_list list;
@@ -47,7 +44,6 @@ Sort::Sort(int nr_elemente, ...) {
 
 Sort::Sort(char s[200]) {
     n = 0;
-    vect = new int[n];
     char* p, * ss = NULL;
     p = strtok_s(s, ",", &ss);
     while (p)
@@ -82,7 +78,6 @@ Sort::Sort(const char* sir)
 
     }
     v[count++] = nr;
-    vect = new int[count];
     for (int i = 0; i < count; i++)
     {
         vect[i] = v[i];
