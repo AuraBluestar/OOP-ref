@@ -69,10 +69,21 @@ inline void Vector<T>::sort(int(*function)(int, int))
 {
 	for (int i = 0; i < vect.size() - 1; i++)
 	{
-		if (function(vect[i], vect[i + 1]) == 1)
+		if(function==nullptr)
 		{
-			std::swap(vect[i], vect[i + 1]);
-			i--;
+			if (vect[i] > vect[i + 1])
+			{
+				std::swap(vect[i], vect[i + 1]);
+				i--;
+			}
+		}
+		else
+		{
+			if (function(vect[i], vect[i + 1]) == 1)
+			{
+				std::swap(vect[i], vect[i + 1]);
+				i--;
+			}
 		}
 	}
 }
