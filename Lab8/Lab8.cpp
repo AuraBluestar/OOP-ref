@@ -37,7 +37,7 @@ int main() {
     for (char c : phrase) {
         if (c == ' ' || c == ',' || c == '.' || c == '?' || c == '!') {
             if (!word.empty()) {
-                // Trecem totul Ón lowercase ?i increment„m count-ul
+                // Trecem totul √Æn lowercase ?i increment√£m count-ul
                 for (char& ch : word) {
                     ch = tolower(ch);
                 }
