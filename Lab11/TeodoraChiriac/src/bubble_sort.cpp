@@ -5,8 +5,8 @@
 template<typename T>
 void bubbleSort(std::vector<T>& arr) {
     int n = arr.size();
-    for ( i = 1; i < n - 1; ++i) {
-        for (int j = 0; j < n - i - 1; ++j) {
+    for (int i = 1; i < n - 1; i++) {
+        for (int j = 0; j < n; j+) {
             if (arr[j] < arr[j + 1]) { 
                 arr[j] = arr[j + 1];   
             }
