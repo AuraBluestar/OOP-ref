@@ -1,7 +1,8 @@
 //Onisor Maria Patricia
+#include "bubble_sort.cpp"
 #include <gtest/gtest.h>
 #include <vector>
-#include "bubble_sort_cpp"
+
 template<typename T>
 void bubbleSort(std::vector<T>& arr) {
     int n = arr.size();
