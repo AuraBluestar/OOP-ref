@@ -10,3 +10,4 @@ Am făcut 5 containere stl:
 - Chiriac Teodora
 - Doltu Eliza
 - Onișor Maria-Patricia
+- Panaite Alexandra-Mihaela

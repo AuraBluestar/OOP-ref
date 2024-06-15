@@ -1,96 +1,56 @@
 #pragma once
 #include <iostream>
-#include <cassert>
+#include <gtest/gtest.h>
 #include "../bonus/include/Vector.h"
 
-void testPushBackAndAccess() {
-    MyVector<int> vec;
+class MyVectorTest : public ::testing::Test {
+  protected:
+    MyVector<int> v_int;
+    MyVector<double> v_double;
 
-    vec.push_back(5);
-    vec.push_back(10);
-    vec.push_back(3);
-
-    assert(vec[0] == 5);
-    assert(vec[1] == 10);
-    assert(vec[2] == 3);
-    assert(vec.getSize() == 3);
-
-    std::cout << "Push back and Access test passed.\n";
-}
-
-void testPopBack() {
-    MyVector<int> vec;
-
-    vec.push_back(5);
-    vec.push_back(10);
-    vec.push_back(3);
-
-    vec.pop_back();
-    assert(vec.getSize() == 2);
-    assert(vec[0] == 5);
-    assert(vec[1] == 10);
-
-    vec.pop_back();
-    vec.pop_back();
-    assert(vec.getSize() == 0);
-
-    std::cout << "Pop back test passed.\n";
-}
-
-void testIndexOperator() {
-    MyVector<int> vec;
-
-    vec.push_back(5);
-    vec.push_back(10);
-    vec.push_back(3);
-
-    assert(vec[0] == 5);
-    assert(vec[1] == 10);
-    assert(vec[2] == 3);
-
-    std::cout << "Index operator test passed.\n";
-}
-
-void testSize() {
-    MyVector<int> vec;
-
-    assert(vec.getSize() == 0);
-
-    vec.push_back(5);
-    vec.push_back(10);
-
-    assert(vec.getSize() == 2);
-
-    vec.pop_back();
-    assert(vec.getSize() == 1);
-
-    vec.pop_back();
-    assert(vec.getSize() == 0);
-
-    std::cout << "Size test passed.\n";
-}
-
-void testResize() {
-    MyVector<int> vec;
-
-    for (int i = 0; i < 10; ++i) {
-        vec.push_back(i);
+    void SetUp() override {
+        v_int = MyVector<int>();       
+        v_double = MyVector<double>(); 
     }
 
-    assert(vec.getSize() == 10);
-    for (int i = 0; i < 10; ++i) {
-        assert(vec[i] == i);
-    }
+    void TearDown() override {}
+};
 
-    std::cout << "Resize test passed.\n";
+TEST_F(MyVectorTest, PushBackAndAccess) {
+    v_int.push_back(10);
+    v_int.push_back(20);
+    EXPECT_EQ(v_int[0], 10);
+    EXPECT_EQ(v_int[1], 20);
 }
 
-int main() {
-    testPushBackAndAccess();
-    testPopBack();
-    testIndexOperator();
-    testSize();
-    testResize();
+TEST_F(MyVectorTest, PopBack) {
+    v_int.push_back(10);
+    v_int.push_back(20);
+    v_int.pop_back();
+    EXPECT_EQ(v_int.getSize(), 1);
+    EXPECT_EQ(v_int[0], 10);
+}
 
-    return 0;
+TEST_F(MyVectorTest, GetSizeEmpty) {
+    EXPECT_EQ(v_int.getSize(), 0);
+}
+
+TEST_F(MyVectorTest, GetSizeAfterPushBack) {
+    v_double.push_back(3.14);
+    EXPECT_EQ(v_double.getSize(), 1);
+}
+
+TEST_F(MyVectorTest, CapacityAfterResize) {
+    for (int i = 0; i < 10; ++i) {
+        v_int.push_back(i);
+    }
+    EXPECT_GE(v_int.getSize(), 10);
+    for (int i = 0; i < 10; ++i) {
+        EXPECT_EQ(v_int[i], i);
+    }
+}
+
+int main(int argc, char** argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }

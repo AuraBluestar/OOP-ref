@@ -1,109 +1,72 @@
 #pragma once
 #include <iostream>
-#include <cassert>
+#include <gtest/gtest.h>
 #include "../bonus/include/Stack.h"
 
-void testPushAndTop() {
+
+TEST(MyStackTest, PushTest) {
     MyStack<int> stack;
 
     stack.push(5);
+    ASSERT_EQ(stack.top(), 5);
+    ASSERT_EQ(stack.getSize(), 1);
+
     stack.push(10);
-    stack.push(3);
-
-    assert(stack.top() == 3);
-    assert(stack.getSize() == 3);
-
-    stack.pop();
-    assert(stack.top() == 10);
-    assert(stack.getSize() == 2);
-
-    std::cout << "Push and Top test passed.\n";
+    ASSERT_EQ(stack.top(), 10);
+    ASSERT_EQ(stack.getSize(), 2);
 }
 
-void testPop() {
+TEST(MyStackTest, PopTest) {
     MyStack<int> stack;
 
     stack.push(5);
     stack.push(10);
 
     stack.pop();
-    assert(stack.top() == 5);
-    assert(stack.getSize() == 1);
+    ASSERT_EQ(stack.top(), 5);
+    ASSERT_EQ(stack.getSize(), 1);
 
     stack.pop();
-    assert(stack.empty());
-
-    bool emptyException = false;
-    try {
-        stack.pop();
-    } catch (const std::out_of_range& e) {
-        emptyException = true;
-    }
-    assert(emptyException);
-
-    std::cout << "Pop test passed.\n";
+    ASSERT_TRUE(stack.empty());
+    ASSERT_THROW(stack.top(), std::out_of_range);
 }
 
-void testEmpty() {
+
+TEST(MyStackTest, TopTest) {
     MyStack<int> stack;
-
-    assert(stack.empty());
-
-    stack.push(5);
-    assert(!stack.empty());
-
-    stack.pop();
-    assert(stack.empty());
-
-    std::cout << "Empty test passed.\n";
-}
-
-void testSize() {
-    MyStack<int> stack;
-
-    assert(stack.getSize() == 0);
 
     stack.push(5);
     stack.push(10);
 
-    assert(stack.getSize() == 2);
+    ASSERT_EQ(stack.top(), 10);
+    ASSERT_EQ(stack.getSize(), 2);
 
     stack.pop();
-    assert(stack.getSize() == 1);
-
-    stack.push(3);
-    assert(stack.getSize() == 2);
-
-    std::cout << "Size test passed.\n";
+    ASSERT_EQ(stack.top(), 5);
+    ASSERT_EQ(stack.getSize(), 1);
 }
 
-void testExceptions() {
+
+TEST(MyStackTest, EmptyTest) {
     MyStack<int> stack;
 
-    bool emptyException = false;
-    try {
-        stack.top();
-    } catch (const std::out_of_range& e) {
-        emptyException = true;
-    }
-    assert(emptyException);
-    emptyException = false;
-    try {
-        stack.pop(); // popping from empty stack
-    } catch (const std::out_of_range& e) {
-        emptyException = true;
-    }
-    assert(emptyException);
+    ASSERT_TRUE(stack.empty());
 
-    std::cout << "Exception test passed.\n";
+    stack.push(5);
+    ASSERT_FALSE(stack.empty());
+
+    stack.pop();
+    ASSERT_TRUE(stack.empty());
 }
 
-int main() {
-    testPushAndTop();
-    testPop();
-    testEmpty();
-    testSize();
-    testExceptions();
+TEST(MyStackTest, ExceptionTest) {
+    MyStack<int> stack;
 
-    return 0;
+    ASSERT_THROW(stack.pop(), std::out_of_range);
+    ASSERT_THROW(stack.top(), std::out_of_range);
+}
+
+int main(int argc, char** argv) {
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
