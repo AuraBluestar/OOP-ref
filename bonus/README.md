@@ -8,6 +8,15 @@ Am făcut 5 containere stl:
 
 # Echipa:
 - Chiriac Teodora
-- Doltu Eliza
+- Doltu Teodora - Eliza
 - Onișor Maria-Patricia
 - Panaite Alexandra-Mihaela
+
+## Materials
+- Documents :
+    > - [`Quickstart: CMake`](https://google.github.io/googletest/quickstart-cmake.html)
+
+## Commands:
+- cmake -S . -B build
+- cmake --build build
+- ctest --verbose 
